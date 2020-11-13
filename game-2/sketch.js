@@ -5,8 +5,15 @@ let cnv;
 let points = 0;
 let w = 600;
 let h = 600;
-let player;
-let coin;
+let player = 0;
+let coin = [];
+let playerImg;
+let coinImg;
+
+function preload() {
+  playerImg = loadImage('assets/images/jump.GIF');
+  coinsImg = loadImage('assets/images/surfboard.PNG');
+}
 
 function setup() {
   cnv = createCanvas(w, h);
@@ -14,8 +21,8 @@ function setup() {
   textFont('monospace');
 
   player = new Player();
-  coin = new Coin();
-
+  //  coin [0]= new Coin();
+  coisn.push(new Coins());
 }
 
 function draw() {
@@ -35,74 +42,101 @@ function draw() {
       break;
     default:
       break;
+
+
+
+      //$( "#player" ).keydown(function() {
+      //alert( "Handler for .keydown() called." );
+      //});
+      //  }
+
+      //if (state === 'title') {
+      //  title();
+      //  cnv.mouseClicked(titleMouseClicked);
+      //} else if (state === "level 1" && points > 50) {
+      //  level1();
+      //  cnv.mouseClicked(level1MouseClicked);
+      //} else {
+
+      //}
+      //}
+
+      function keyReleased() {
+        if (player == '') {
+          player.direction = 'still';
+        }
+        return false;
+      }
+
+      function keyPressed() {
+        if (keyCode == LEFT_ARROW) {
+          player.direction = 'left'
+        } else if (keyCode == RIGHT_ARROW) {
+          player.direction = 'right'
+        } else if (keyCode == UP_ARROW) {
+          player.direction = 'up'
+        } else if (keyCode == DOWN_ARROW) {
+          player.direction = 'down'
+        } else if (key == '') {
+          player.direction = 'still'
+        }
+      }
+
+      function title() {
+        background(20, 132, 132);
+        textSize(80);
+        stroke(255);
+        fill(5);
+        text('Game', 200, 200);
+
+        textSize(30);
+        text('start', 270, 300);
+
+        textSize(30);
+        text('How To Play', 220, 400);
+      }
+
+      function titleMouseClicked() {
+
+        console.log('canvas is clicked on title page');
+        state = 'level 1'
+
+      }
+
+      function level1() {
+        background(113, 50, 299);
+        //textSize(30);
+        //text('click for ponts', 180, height - 300);
+
+        player.display();
+        coin.display();
+        coin.move();
+      }
+
+      function level1MouseClicked() {
+        points++;
+        console.log('points = ' + points);
+
+        if (points >= 10) {
+          state = 'win'
+        }
+
+
+        function youWin() {
+          background(20, 132, 132);
+          textSize(80);
+          stroke(255);
+          text('Win', 200, 200);
+
+          textSize(30);
+          text('Restart', 270, 300);
+
+        }
+
+        function youWinMouseClicked() {
+          state = 'level 1';
+          points = 0;
+        }
+
+      }
   }
-  //if (state === 'title') {
-  //  title();
-  //  cnv.mouseClicked(titleMouseClicked);
-  //} else if (state === "level 1" && points > 50) {
-  //  level1();
-  //  cnv.mouseClicked(level1MouseClicked);
-  //} else {
-
-  //}
-  //}
-
-
-  function title() {
-    background(20, 132, 132);
-    textSize(80);
-    stroke(255);
-    fill(5);
-    text('Game', 200, 200);
-
-    textSize(30);
-    text('start', 270, 300);
-
-    textSize(30);
-    text('How To Play', 220, 400);
-  }
-
-  function titleMouseClicked() {
-
-    console.log('canvas is clicked on title page');
-    state = 'level 1'
-
-  }
-
-  function level1() {
-    background(113, 50, 299);
-    //textSize(30);
-    //text('click for ponts', 180, height - 300);
-
-    player.display();
-    coin.display();
-    coin.move();
-  }
-
-  function level1MouseClicked() {
-    points++;
-    console.log('points = ' + points);
-
-    if (points >= 10) {
-      state = 'win'
-    }
-
-
-    function youWin() {
-      background(20, 132, 132);
-      textSize(80);
-      stroke(255);
-      text('Win', 200, 200);
-
-      textSize(30);
-      text('Restart', 270, 300);
-
-    }
-
-    function youWinMouseClicked() {
-      state = 'level 1';
-      points = 0;
-    }
-
-  }
-}
