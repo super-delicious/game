@@ -6,9 +6,9 @@ let points = 0;
 let w = 600;
 let h = 600;
 let player = 0;
-let coin = [];
+let coins = [];
 let playerImg;
-let coinImg;
+let coinsImg;
 
 function preload() {
   playerImg = loadImage('assets/images/jump.GIF');
@@ -22,7 +22,7 @@ function setup() {
 
   player = new Player();
   //  coin [0]= new Coin();
-  coisn.push(new Coins());
+  coins.push(new Coin());
 }
 
 function draw() {
@@ -61,12 +61,7 @@ function draw() {
       //}
       //}
 
-      function keyReleased() {
-        if (player == '') {
-          player.direction = 'still';
-        }
-        return false;
-      }
+
 
       function keyPressed() {
         if (keyCode == LEFT_ARROW) {
@@ -77,10 +72,19 @@ function draw() {
           player.direction = 'up'
         } else if (keyCode == DOWN_ARROW) {
           player.direction = 'down'
-        } else if (key == '') {
+        } else if (key == ' ') {
           player.direction = 'still'
         }
       }
+
+      function keyReleased() {
+        if (player == '') {
+          player.direction = 'still';
+        }
+        return false;
+      }
+
+
 
       function title() {
         background(20, 132, 132);
@@ -105,38 +109,62 @@ function draw() {
 
       function level1() {
         background(113, 50, 299);
-        //textSize(30);
-        //text('click for ponts', 180, height - 300);
+
+        if (random(1 <= 0.01)) {
+          coins.push(new Coin());
+        }
 
         player.display();
-        coin.display();
-        coin.move();
+        player.move();
+
+        coins[0].display();
+        coins[0].move();
+
+        for (let i = 0; i < coins.length; i++) {
+          coins[i].display();
+          coins[i].move();
+
+        }
+
+        // check for collision, if there is a collision inccrease points by 1 AND splice taht coin out of array
+        // need to iterate backwards through array
+
+        for (let i = coins.length - 1; i >= 0; i--) {
+          if (dist(player.x, player.y, coins[i].x, coins[i].y) <= (player.r + coins[i].r) / 2) {
+            points++;
+            console.log(points);
+            coins.splice(i, 1);
+          }
+        }
+        textSize(30);
+        //`poinrs: ${points}` == 'points: ' + points,
+        text(`points: ${points}`, 30, height - 10);
       }
 
       function level1MouseClicked() {
-        points++;
-        console.log('points = ' + points);
+        //  points++;
+        //  console.log('points = ' + points);
 
-        if (points >= 10) {
-          state = 'win'
-        }
+        //  if (points >= 10) {
+        //    state = 'win';
+      }
 
 
-        function youWin() {
-          background(20, 132, 132);
-          textSize(80);
-          stroke(255);
-          text('Win', 200, 200);
+      function youWin() {
+        background(20, 132, 132);
+        textSize(80);
+        stroke(255);
+        text('Win', 200, 200);
 
-          textSize(30);
-          text('Restart', 270, 300);
-
-        }
-
-        function youWinMouseClicked() {
-          state = 'level 1';
-          points = 0;
-        }
+        textSize(30);
+        text('Restart', 270, 300);
 
       }
+
+      function youWinMouseClicked() {
+        state = 'level 1';
+        points = 0;
+      }
+
   }
+}
