@@ -8,11 +8,11 @@ let h = 600;
 let player = 0;
 let coins = [];
 let playerImg;
-let coinsImg;
+let coinImg;
 
 function preload() {
-  playerImg = loadImage('assets/images/jump.GIF');
-  coinsImg = loadImage('assets/images/surfboard.PNG');
+  playerImg = loadImage('assets/images/om.PNG');
+  coinImg = loadImage('assets/images/sb.PNG');
 }
 
 function setup() {
@@ -103,7 +103,7 @@ function draw() {
       function titleMouseClicked() {
 
         console.log('canvas is clicked on title page');
-        state = 'level 1'
+        state = 'level 1';
 
       }
 
@@ -132,8 +132,11 @@ function draw() {
         for (let i = coins.length - 1; i >= 0; i--) {
           if (dist(player.x, player.y, coins[i].x, coins[i].y) <= (player.r + coins[i].r) / 2) {
             points++;
-            console.log(points);
+
             coins.splice(i, 1);
+          } else if (coins[i].y > h) {
+              coins.splice(i, 1);
+            //console.log('coin out');
           }
         }
         textSize(30);
