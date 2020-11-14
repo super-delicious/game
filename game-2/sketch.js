@@ -75,8 +75,8 @@ function draw() {
       player.direction = 'up'
     } else if (keyCode == DOWN_ARROW || key == 's') {
       player.direction = 'down'
-    //} else if (key == ' ') {
-    //  player.direction = 'still'
+    } else if (key == ' ') {
+      player.direction = 'still'
     }
   }
 
@@ -97,7 +97,7 @@ function draw() {
     //text('Game', 200, 200);
 
     textSize(33);
-    text('start', 450, 350);
+    text('Start', 450, 350);
 
     textSize(30);
     text('How To Play', 400, 400);
@@ -173,5 +173,5 @@ function draw() {
       witch.display();
       witchr.move();
     }
-}
+  }
 }
