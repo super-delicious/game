@@ -12,21 +12,25 @@ let coinImg;
 let oceanImg;
 let titleImg;
 
+
 function preload() {
   playerImg = loadImage('assets/images/om.PNG');
   coinImg = loadImage('assets/images/sb.PNG');
+  //  coinImg = loadImage('assets/images/sb2.PNG');   ---------- it doesn't work & will overlay the previous coinImg:( ------------
   oceanImg = loadImage('assets/images/ocean.PNG');
   titleImg = loadImage('assets/images/title.PNG');
 }
 
 function setup() {
   cnv = createCanvas(w, h);
+  textStyle(BOLD);
 
   textFont('monospace');
 
   player = new Player();
   //  coin [0]= new Coin();
   coins.push(new Coin());
+
 }
 
 function draw() {
@@ -97,6 +101,7 @@ function draw() {
     //text('Game', 200, 200);
 
     textSize(33);
+    fill('ecfee4');
     text('Start', 450, 350);
 
     textSize(30);
@@ -142,9 +147,12 @@ function draw() {
         //console.log('coin out');
       }
     }
+    fill(249,255,78);
     textSize(30);
+
     //`poinrs: ${points}` == 'points: ' + points,
-    text(`points: ${points}`, 30, height - 10);
+    text(`Points: ${points}`, 30, height - 500);
+
   }
 
   function level1MouseClicked() {
@@ -170,8 +178,7 @@ function draw() {
     function youWinMouseClicked() {
       state = 'level 1';
       points = 0;
-      witch.display();
-      witchr.move();
+
     }
   }
 }
