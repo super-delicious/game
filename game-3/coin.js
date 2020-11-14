@@ -1,6 +1,6 @@
 class Coin {
   constructor() {
-    this.r = 60;
+    this.r = 80;
     this.x = random(w);
     this.y = 0 - this.r;
   }
