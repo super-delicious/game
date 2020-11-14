@@ -3,16 +3,20 @@
 let state = 'title';
 let cnv;
 let points = 0;
-let w = 600;
-let h = 600;
-let player = 0;
+let w = 960;
+let h = 540;
+let player;
 let coins = [];
 let playerImg;
 let coinImg;
+let oceanImg;
+let titleImg;
 
 function preload() {
   playerImg = loadImage('assets/images/om.PNG');
   coinImg = loadImage('assets/images/sb.PNG');
+  oceanImg = loadImage('assets/images/ocean.PNG');
+  titleImg = loadImage('assets/images/title.PNG');
 }
 
 function setup() {
@@ -71,32 +75,32 @@ function draw() {
       player.direction = 'up'
     } else if (keyCode == DOWN_ARROW || key == 's') {
       player.direction = 'down'
-    } else if (key == ' ') {
-      player.direction = 'still'
+    //} else if (key == ' ') {
+    //  player.direction = 'still'
     }
   }
 
-  //function keyReleased() {
-  //  if (player == '') {
-  //    player.direction = 'still';
-  //  }
-  //  return false;
-  //}
+  function keyReleased() {
+    if (player == '') {
+      player.direction = 'still'
+    }
+    return false;
+  }
 
 
 
   function title() {
-    background(20, 132, 132);
+    background(titleImg);
     textSize(80);
     stroke(255);
-    fill(5);
-    text('Game', 200, 200);
+    //fill(5);
+    //text('Game', 200, 200);
+
+    textSize(33);
+    text('start', 450, 350);
 
     textSize(30);
-    text('start', 270, 300);
-
-    textSize(30);
-    text('How To Play', 220, 400);
+    text('How To Play', 400, 400);
   }
 
   function titleMouseClicked() {
@@ -107,7 +111,7 @@ function draw() {
   }
 
   function level1() {
-    background(113, 50, 299);
+    background(oceanImg);
 
     if (random(1) <= 0.01) {
       coins.push(new Coin());
@@ -153,10 +157,10 @@ function draw() {
 
 
     function youWin() {
-      background(20, 132, 132);
+      background(255, 255, 255);
       textSize(80);
       stroke(255);
-      text('Win', 200, 200);
+      text('Congraluation, you win!', 200, 200);
 
       textSize(30);
       text('Restart', 270, 300);
@@ -166,7 +170,8 @@ function draw() {
     function youWinMouseClicked() {
       state = 'level 1';
       points = 0;
+      witch.display();
+      witchr.move();
     }
-
-  }
+}
 }

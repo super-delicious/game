@@ -12,6 +12,7 @@ class Player {
     //rect(this.x, this.y, this.r, this.r);
   }
   move() {
+//  console.log(Ocean Man move);
     switch (this.direction) {
       case 'still':
         // don't move anything
@@ -40,7 +41,8 @@ class Player {
           this.x -= this.speed;
         }
         break;
-    
+      default:
+        break;
     }
   }
 }
