@@ -80,16 +80,16 @@ function draw() {
     } else if (keyCode == DOWN_ARROW || key == 's') {
       player.direction = 'down'
     } else if (key == ' ') {
-      player.direction = 'still'
+      player.direction = 'still';
     }
   }
 
-  function keyReleased() {
-    if (player == '') {
-      player.direction = 'still'
-    }
-    return false;
-  }
+  //  function keyReleased() {
+  //  if (player == '') {
+  //    player.direction = 'still'
+  //  }
+  //  return false;
+  //}
 
 
 
@@ -99,13 +99,16 @@ function draw() {
     stroke(255);
     //fill(5);
     //text('Game', 200, 200);
+    textSize(50);
+    fill('98cdff');
+    text('Ocean Man', 360, 180);
 
     textSize(33);
     fill('ecfee4');
-    text('Start', 450, 350);
+    text('Start', 450, 250);
 
     textSize(30);
-    text('How To Play', 400, 400);
+    text('How To Play', 400, 320);
   }
 
   function titleMouseClicked() {
@@ -144,16 +147,17 @@ function draw() {
         coins.splice(i, 1);
       } else if (coins[i].y > h) {
         coins.splice(i, 1);
-        //console.log('coin out');
+        //console.log('coin is out');
       }
     }
-    fill(249,255,78);
+    fill(249, 255, 78);
     textSize(30);
 
     //`poinrs: ${points}` == 'points: ' + points,
     text(`Points: ${points}`, 30, height - 500);
 
   }
+
 
   function level1MouseClicked() {
     //points++;
