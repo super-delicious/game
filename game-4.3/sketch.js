@@ -114,7 +114,7 @@ function draw() {
     //text('Game', 200, 200);
     textSize(50);
     fill('98cdff');
-    text('Ocean Man', 360, 180);
+    text(' Dr.XXX ', 360, 180);
 
     textSize(33);
     fill('ecfee4');
