@@ -83,7 +83,7 @@ function draw() {
   //    player.direction = 'still';
   //  }
   //}
-
+}
   function keyPressed() {
     if (keyCode == LEFT_ARROW || key == 'a') {
       player.direction = 'left'
@@ -198,4 +198,3 @@ function draw() {
 
     }
   }
-}
