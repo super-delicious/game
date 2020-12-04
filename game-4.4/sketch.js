@@ -16,19 +16,20 @@ let maskImg;
 let suitImg;
 var gameState = "L1";
 var song1;
-var song2;
+var eatSong2;
 var song3;
-var song4;
+var eatSong4;
 var song5;
 var song6;
 
 
 
+
 function preload() {
   song1 = loadSound("assets/sounds/music_01.mp3");
-  song2 = loadSound("assets/sounds/music_02.mp3");
+  eatSong2 = loadSound("assets/sounds/music_02.mp3");
   song3 = loadSound("assets/sounds/music_03.mp3");
-  song4 = loadSound("assets/sounds/music_04.mp3");
+  eatSong4 = loadSound("assets/sounds/music_04.mp3");
   song5 = loadSound("assets/sounds/music_gameover.mp3");
   song6 = loadSound("assets/sounds/music_win.mp3");
 
@@ -55,6 +56,11 @@ function setup() {
 }
 
 function draw() {
+
+  //if (player.eat(coins)) {
+    //eatSong2.play();
+    //picklocation();
+  //}
   if (gameState == "L1") {
     level1();
   }
@@ -81,7 +87,6 @@ function draw() {
       break;
   }
 }
-
 
 function keyPressed() {
   if (keyCode == LEFT_ARROW || key == 'a') {
@@ -169,7 +174,7 @@ function level1() {
   //`poinrs: ${points}` == 'points: ' + points,
   text(`Points: ${points}`, 30, height - 500);
 
-  if (score >= 50) {
+  if (points >= 5) {
     gameState = "L2";
   }
 
@@ -214,7 +219,16 @@ function level2() {
   //`poinrs: ${points}` == 'points: ' + points,
   text(`Points: ${points}`, 30, height - 500);
 
-  if (score >= 100) {}
+  if (score >= 10) {}
+
+  // you win ==========================================================
+  background(255, 255, 255);
+  textSize(80);
+  stroke(255);
+  text('Congraluation, you win!', 200, 200);
+
+  textSize(30);
+  text('Restart', 270, 300);
 
   //image(goverImg, 0, 0, 600, 600);
 
@@ -230,16 +244,16 @@ function level1MouseClicked() {
   }
 
 
-  function youWin() {
-    background(255, 255, 255);
-    textSize(80);
-    stroke(255);
-    text('Congraluation, you win!', 200, 200);
+//  function youWin() {
+//    background(255, 255, 255);
+//    textSize(80);
+//    stroke(255);
+//    text('Congraluation, you win!', 200, 200);
 
-    textSize(30);
-    text('Restart', 270, 300);
-
-  }
+//    textSize(30);
+//    text('Restart', 270, 300);
+//
+//  }
 
   function youWinMouseClicked() {
     state = 'level 1';
