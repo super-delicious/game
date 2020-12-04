@@ -15,10 +15,23 @@ let titleImg;
 let maskImg;
 let suitImg;
 var gameState = "L1";
+var song1;
+var song2;
+var song3;
+var song4;
+var song5;
+var song6;
 
 
 
 function preload() {
+  song1 = loadSound('assets/sounds/music_01.mp3');
+  song2 = loadSound('assets/sounds/music_02.mp3');
+  song3 = loadSound('assets/sounds/music_03.mp3');
+  song4 = loadSound('assets/sounds/music_04.mp3');
+  song5 = loadSound('assets/sounds/music_gameover.mp3');
+  song6 = loadSound('assets/sounds/music_win.mp3');
+
   playerImg = loadImage('assets/images/om.PNG');
   coinImg = loadImage('assets/images/sb.PNG');
   //  coinImg = loadImage('assets/images/sb2.PNG');
@@ -200,6 +213,10 @@ function level2() {
 
   //`poinrs: ${points}` == 'points: ' + points,
   text(`Points: ${points}`, 30, height - 500);
+
+  if (score >= 100) {}
+
+  //image(goverImg, 0, 0, 600, 600);
 
 } // end level 2 ============================================
 
