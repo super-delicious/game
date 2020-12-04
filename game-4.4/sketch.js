@@ -10,7 +10,7 @@ let coins = [];
 let playerImg;
 let coinImg;
 let oceanImg;
-let hImg;
+let hosImg;
 let titleImg;
 let maskImg;
 let suitImg;
@@ -25,19 +25,19 @@ var song6;
 
 
 function preload() {
-  song1 = loadSound('assets/sounds/music_01.mp3');
-  song2 = loadSound('assets/sounds/music_02.mp3');
-  song3 = loadSound('assets/sounds/music_03.mp3');
-  song4 = loadSound('assets/sounds/music_04.mp3');
-  song5 = loadSound('assets/sounds/music_gameover.mp3');
-  song6 = loadSound('assets/sounds/music_win.mp3');
+  song1 = loadSound("assets/sounds/music_01.mp3");
+  song2 = loadSound("assets/sounds/music_02.mp3");
+  song3 = loadSound("assets/sounds/music_03.mp3");
+  song4 = loadSound("assets/sounds/music_04.mp3");
+  song5 = loadSound("assets/sounds/music_gameover.mp3");
+  song6 = loadSound("assets/sounds/music_win.mp3");
 
   playerImg = loadImage('assets/images/om.PNG');
   coinImg = loadImage('assets/images/sb.PNG');
   //  coinImg = loadImage('assets/images/sb2.PNG');
   oceanImg = loadImage('assets/images/ocean.PNG');
   titleImg = loadImage('assets/images/title.PNG');
-  hImg = loadImage('assets/images/hos.PNG');
+  hosImg = loadImage('assets/images/hos.PNG');
   maskImg = loadImage('assets/images/mask.PNG');
   suitImg = loadImage('assets/images/suit.PNG');
 }
@@ -132,7 +132,7 @@ function titleMouseClicked() {
 
 
 function level1() {
-  background(posImg);
+  background(hosImg);
 
   if (random(1) <= 0.01) {
     coins.push(new Coin());
