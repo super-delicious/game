@@ -3,6 +3,7 @@ class Coin {
     this.r = 73;
     this.x = random(w);
     this.y = 0 - this.r;
+    this.speed = 5;
   }
 
 

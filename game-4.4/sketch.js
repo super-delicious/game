@@ -9,7 +9,9 @@ let player;
 let coins = [];
 let masks = [];
 let suits = [];
+let enemies = [];
 let ybs = [];
+let enemyImg;
 let playerImg;
 let coinImg;
 let ybImg;
@@ -18,6 +20,9 @@ let hosImg;
 let titleImg;
 let maskImg;
 let suitImg;
+let goverImg;
+
+
 var song1;
 var eatSong2;
 var song3;
@@ -25,16 +30,26 @@ var eatSong4;
 var songOver;
 var songWin;
 
+let playerSS;
+let playerJSON;
+let playerAnimation = [];
+
+
+
+
+
 
 
 
 function preload() {
+  //sounds
   song1 = loadSound("assets/sounds/music_01.wav");
   eatSong2 = loadSound("assets/sounds/music_02.mp3");
   song3 = loadSound("assets/sounds/music_03.wav");
   eatSong4 = loadSound("assets/sounds/music_04.mp3");
   songOver = loadSound("assets/sounds/music_gameover.mp3");
   songWin = loadSound("assets/sounds/music_win.mp3");
+  //imgs
   playerImg = loadImage('assets/images/om.PNG');
   coinImg = loadImage('assets/images/sb.PNG');
   ybImg = loadImage('assets/images/sb2.PNG');
@@ -43,11 +58,19 @@ function preload() {
   hosImg = loadImage('assets/images/hos.PNG');
   maskImg = loadImage('assets/images/mask.PNG');
   suitImg = loadImage('assets/images/suit.PNG');
+  goverImg = loadImage('assets/images/gover.PNG');
+  enemyImg = loadImage('assets/images/mask2.PNG');
+  //sprites
+  playerSS = loadImage('assets/images/player.PNG');
+  playerJSON = loadJSON('assets/images/player.json');
+
 }
 
 function setup() {
 
   song1.play();
+
+  frameRate(12);
 
   cnv = createCanvas(w, h);
 
@@ -57,7 +80,19 @@ function setup() {
 
   player = new Player();
   coins.push(new Coin());
+  enemies.push(new Enemies());
 
+  //console.log(playerJSON.frame[0].frame);
+
+  let playerFrames = playerJSON.frames;
+
+  for (let i = 0; i < playerFrames.length; i++) {
+    //console.log(playerFrames[i]);
+    let pos = playerFrames[i].frame;
+    let img = playerSS.get(pos.x, pos.y, pos.w, pos.h);
+    playerAnimation.push(img);
+    //console.log(playerAnimation);
+  }
 }
 
 function draw() {
@@ -146,8 +181,11 @@ function level1() {
   background(hosImg);
 
   // add mask =========================================================
-  if (random(1) <= 0.01) {
+  if (random(1) <= 0.05) {
     masks.push(new Mask());
+  }
+  if (random(1) <= 0.1) {
+    enemies.push(new Enemy());
   }
 
   player.display();
@@ -156,9 +194,11 @@ function level1() {
   for (let i = 0; i < masks.length; i++) {
     masks[i].display();
     masks[i].move();
-
   }
-
+  for (let i = 0; i < enemies.length; i++) {
+    enemies[i].display();
+    enemies[i].move();
+  }
   // check for collision, if there is a collision inccrease points by 1 AND splice taht sb out of array
   // need to iterate backwards through array
 
@@ -173,6 +213,17 @@ function level1() {
       //console.log('sb is out');
     }
   }
+
+  for (let i = enemies.length - 1; i >= 0; i--){
+  if (dist(player.x, player.y, enemies[i].x, enemies[i].y) <= (player.r + enemies[i].r)/2){
+   points--;
+   console.log(points);
+   enemies.splice(i, 1);
+  }else if (enemies[i].y > h){
+    enemies.splice(i, 1);
+    console.log('waste mask')
+  }
+}
 
   // add suit =========================================================
   if (random(1) <= 0.01) {
@@ -288,9 +339,7 @@ function level2() {
   //song3.play();
 
   // you win ==========================================================
-
-
-  //image(goverImg, 0, 0, 600, 600);
+  background(goverImg);
 
 } // end level 2 ======================================================
 
