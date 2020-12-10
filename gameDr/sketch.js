@@ -120,6 +120,11 @@ function draw() {
       // playControls();
       // cnv.mouseClicked(level2MouseClicked);
       break;
+    case 'level 3':
+      level3();
+      // playControls();
+      // cnv.mouseClicked(level2MouseClicked);
+      break;
     case 'you win':
       youWin();
       cnv.mouseClicked(youWinMouseClicked);
@@ -219,7 +224,8 @@ function level1() {
   for (let i = enemies.length - 1; i >= 0; i--) {
     if (dist(player.x, player.y, enemies[i].x, enemies[i].y) <= (player.r + enemies[i].r) / 2) {
       points--;
-      console.log(points);
+      //console.log(points);
+      songOver.play();
       enemies.splice(i, 1);
     } else if (enemies[i].y > h) {
       enemies.splice(i, 1);
@@ -231,9 +237,6 @@ function level1() {
   if (random(1) <= 0.01) {
     suits.push(new Suit());
   }
-
-  player.display();
-  player.move();
 
   for (let i = 0; i < suits.length; i++) {
     suits[i].display();
@@ -309,8 +312,6 @@ function level2() {
     ybs.push(new Yb());
   }
 
-  player.display();
-  player.move();
 
   for (let i = 0; i < ybs.length; i++) {
     ybs[i].display();
@@ -338,14 +339,21 @@ function level2() {
   //`poinrs: ${points}` == 'points: ' + points,
   text(`Points: ${points}`, 30, height - 500);
 
-  if (points >= 20) {}
-  //song3.play();
+  //if (points >= 2) {}
 
-  // you win ==========================================================
-  background(goverImg);
+  if (points >= 20) {
+    state = "level 3";
+  }
 
 } // end level 2 ======================================================
 
+function level3() {
+
+  // you win!!!
+  background(goverImg);
+  songWin.play();
+
+}
 
 function level1MouseClicked() {
   //points++;
@@ -353,7 +361,7 @@ function level1MouseClicked() {
 
   if (points >= 30) {
     state = 'you win';
-    songWin.play();
+
   }
 
 

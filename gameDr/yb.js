@@ -3,6 +3,7 @@ class Yb {
     this.r = 73;
     this.x = random(w);
     this.y = 0 - this.r;
+      this.speed = 7;
   }
 
 
@@ -14,7 +15,7 @@ class Yb {
     }
 
     move() {
-      this.y++;
+          this.y += this.speed;
     }
 
   }
