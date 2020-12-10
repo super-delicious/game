@@ -1,5 +1,5 @@
 
-class Enemies{
+class Enemy{
 	constructor(){
 		this.r = 90;
 		this.x = random(w);

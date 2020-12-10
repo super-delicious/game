@@ -21,6 +21,7 @@ let titleImg;
 let maskImg;
 let suitImg;
 let goverImg;
+let fishImg;
 //song
 var song1;
 var eatSong2;
@@ -59,6 +60,7 @@ function preload() {
   suitImg = loadImage('assets/images/suit.PNG');
   goverImg = loadImage('assets/images/gover.PNG');
   enemyImg = loadImage('assets/images/mask2.PNG');
+  fishImg = loadImage('assets/images/fish.PNG');
   //sprites
   playerSS = loadImage('assets/images/player.PNG');
   playerJSON = loadJSON('assets/images/player.json');
@@ -179,12 +181,13 @@ function level1() {
 
   background(hosImg);
 
+
   // add mask =========================================================
   if (random(1) <= 0.05) {
     masks.push(new Mask());
   }
   if (random(1) <= 0.1) {
-    enemies.push(new Enemies());
+    enemies.push(new Enemy());
   }
 
   player.display();
@@ -212,17 +215,17 @@ function level1() {
       //console.log('sb is out');
     }
   }
-
-  for (let i = enemies.length - 1; i >= 0; i--){
-  if (dist(player.x, player.y, enemies[i].x, enemies[i].y) <= (player.r + enemies[i].r)/2){
-   points--;
-   console.log(points);
-   enemies.splice(i, 1);
-  }else if (enemies[i].y > h){
-    enemies.splice(i, 1);
-    //console.log('waste mask')
+  // enemies
+  for (let i = enemies.length - 1; i >= 0; i--) {
+    if (dist(player.x, player.y, enemies[i].x, enemies[i].y) <= (player.r + enemies[i].r) / 2) {
+      points--;
+      console.log(points);
+      enemies.splice(i, 1);
+    } else if (enemies[i].y > h) {
+      enemies.splice(i, 1);
+      //console.log('waste mask')
+    }
   }
-}
 
   // add suit =========================================================
   if (random(1) <= 0.01) {
@@ -272,6 +275,7 @@ function level1() {
 function level2() {
 
   background(oceanImg);
+  background(fishImg);
   // add surfboard 1 ==========================================================
   if (random(1) <= 0.01) {
     coins.push(new Coin());
