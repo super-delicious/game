@@ -163,15 +163,14 @@ function title() {
   //fill(5);
   //text('Game', 200, 200);
   textSize(50);
-  fill('98cdff');
-  text(' Dr.XXX ', 360, 180);
 
   textSize(33);
-  fill('ecfee4');
-  text('Start', 450, 250);
+  fill('dacd03');
+  text('Start', 450, 380);
 
   textSize(30);
-  text('How To Play', 400, 320);
+  fill('dacd03');
+  text('How To Play', 400, 460);
 }
 
 function titleMouseClicked() {
