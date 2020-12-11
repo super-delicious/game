@@ -187,7 +187,7 @@ function level1() {
 
 
   // add mask =========================================================
-  if (random(1) <= 0.05) {
+  if (random(1) <= 0.09) {
     masks.push(new Mask());
   }
   if (random(1) <= 0.1) {
@@ -233,7 +233,7 @@ function level1() {
   }
 
   // add suit =========================================================
-  if (random(1) <= 0.01) {
+  if (random(1) <= 0.06) {
     suits.push(new Suit());
   }
 
@@ -279,7 +279,7 @@ function level2() {
   background(oceanImg);
   background(fishImg);
   // add surfboard 1 ==========================================================
-  if (random(1) <= 0.01) {
+  if (random(1) <= 0.09) {
     coins.push(new Coin());
   }
 
@@ -307,7 +307,7 @@ function level2() {
   }
   // end surfboard 1 add surfboard 2 ==========================================
 
-  if (random(1) <= 0.01) {
+  if (random(1) <= 0.09) {
     ybs.push(new Yb());
   }
 
