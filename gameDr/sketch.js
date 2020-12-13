@@ -50,7 +50,7 @@ function preload() {
   songOver = loadSound("assets/sounds/music_gameover.mp3");
   songWin = loadSound("assets/sounds/music_win.mp3");
   //imgs
-  playerImg = loadImage('assets/images/om.PNG');
+  playerImg = loadImage('assets/images/walk.GIF');
   coinImg = loadImage('assets/images/sb.PNG');
   ybImg = loadImage('assets/images/sb2.PNG');
   oceanImg = loadImage('assets/images/ocean.PNG');
